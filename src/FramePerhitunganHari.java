@@ -24,6 +24,7 @@ public class FramePerhitunganHari extends javax.swing.JFrame {
 
         // Set spinner tahun (range)
         spnTahun.setModel(new javax.swing.SpinnerNumberModel(2025, 1900, 2100, 1));
+        ((javax.swing.JSpinner.DefaultEditor) spnTahun.getEditor()).getTextField().setEditable(false);
 
         txtHasil.setEditable(false);
         txtSelisih.setEditable(false);
