@@ -1,12 +1,8 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+import javax.swing.JSpinner;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
-/**
- *
- * @author ACER-A514
- */
+
 public class FramePerhitunganHari extends javax.swing.JFrame {
 
     /**
@@ -25,6 +21,21 @@ public class FramePerhitunganHari extends javax.swing.JFrame {
         // Set spinner tahun (range)
         spnTahun.setModel(new javax.swing.SpinnerNumberModel(2025, 1900, 2100, 1));
         ((javax.swing.JSpinner.DefaultEditor) spnTahun.getEditor()).getTextField().setEditable(false);
+        // Hilangkan pemisah ribuan pada spinner tahun
+        JSpinner.NumberEditor editor = new JSpinner.NumberEditor(spnTahun, "0");
+        spnTahun.setEditor(editor);
+        
+        ((JSpinner.DefaultEditor) spnTahun.getEditor()).getTextField().addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+                char c = e.getKeyChar();
+                if (!Character.isDigit(c) && c != '\b') {
+                    e.consume(); // cegah huruf
+                }
+            }
+        });
+
+
 
         txtHasil.setEditable(false);
         txtSelisih.setEditable(false);
